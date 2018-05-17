@@ -32,6 +32,9 @@ console.log('Month 1: ' + months[1]);
 // html elements
 // similar to var
 let pTodayDate = document.getElementById("p--today-date");
+let birthdateBtn = document.getElementById("button--birthday");
+let inputBirthdate = document.getElementById("input--date-picker");
+let pBirthdayMessage = document.getElementById("p--birthday-message");
 
 // Today's date
 let today: Date = new Date();
@@ -54,22 +57,19 @@ console.log(today.getFullYear());
 //display todays date to page
 pTodayDate.innerHTML = `Today is ${ todayDayOfWeek }, ${ todayMonth } ${ today.getDate() }, ${ today.getFullYear() }`;
 
-let birthdateBtn = document.getElementById("button--birthday");
-let inputBirthdate = document.getElementById("input--date-picker");
-let pBirthdayMessage = document.getElementById("p--birthday-message");
+
 birthdateBtn.onclick = function () {
     let birthday: Date = new Date(inputBirthdate.value);
-    todayBirthday(birthday);
+    pBirthdayMessage.innerHTML = todayBirthday(birthday);
 }
 
-function todayBirthday(birthday) {
+function todayBirthday(birthday: Date) : string {
+    var message = "";
     let birthdayMonth: string = months[birthday.getMonth()];
     let birthdayDayOfWeek: string = days[birthday.getDay()];
-    console.log(birthday + " " + today);
-    if(birthday === today){
-        pBirthdayMessage.innerHTML = `Happy Birthday!`;
+    if(birthday.getMonth() === today.getMonth() && birthday.getDate() === today.getDate()){
+        return `Happy Birthday!`;
     } else {
-        pBirthdayMessage.innerHTML = `Your birthday will be on ${ birthdayDayOfWeek }, ${ birthdayMonth } ${ birthday.getDate() }, ${ birthday.getFullYear() }`;
+        return `Your birthday is on ${ birthdayDayOfWeek }, ${ birthdayMonth } ${ birthday.getDate() }, ${ today.getFullYear() }`;
     }
-
 }
