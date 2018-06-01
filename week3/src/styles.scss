@@ -1,0 +1,54 @@
+// font sizes
+$big-font: 25px;
+$med-font: 20px;
+$sml-font: 15px;
+
+// To redirect this to the index.html, go to angular.json and change the styles route to this scss.
+.page-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+header { // Everything in here is within the scope of header
+    nav {
+        .links { // <ul>
+            > li {
+                position: relative;
+                display: inline;
+                
+                .nested-links {
+                    padding-left: 0;
+                    position: absolute;
+                    left: 0;
+                    display: none;
+                    top: 100%;
+                    font-size: $big-font;
+
+                    li {
+                        position: relative;
+                        font-size: $med-font;
+                        .sublinks {
+                            position: absolute;
+                            left: 100%;
+                            top: 0%;
+                            font-size: $sml-font;
+                            display: none;
+                        }
+
+                        &:hover > .sublinks {
+                            display: block;
+                        }
+                    }
+                }
+
+                &:hover > .nested-links {
+                    display: block;
+                }
+            }
+        }
+    }
+}
